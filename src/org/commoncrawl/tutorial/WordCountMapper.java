@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  */
 public class WordCountMapper extends MapReduceBase 
   implements Mapper<Text, ArcFileItem, Text, LongWritable> {
-  private final static Pattern REGEX_NON_ALPHANUMERIC = Pattern.compile("[^a-zA-Z0-9 ]");
+  private final static Pattern REGEX_NON_ALPHANUMERIC = Pattern.compile("[^[13][a-km-zA-HJ-NP-Z0-9]{26,33}$]");
   private final static Pattern REGEX_SPACE = Pattern.compile("\\s+");
 
   public void map(Text key, ArcFileItem value,
@@ -40,6 +40,7 @@ public class WordCountMapper extends MapReduceBase
       String content = new Scanner(inputStream).useDelimiter("\\A").next();
       // Parses HTML with a tolerant parser and extracts all text.
       String pageText = Jsoup.parse(content).text();
+      System.out.println(pageText);
       // Removes all punctuation.
       pageText = REGEX_NON_ALPHANUMERIC.matcher(pageText).replaceAll("");
       // Splits by space and outputs to OutputCollector.

@@ -71,7 +71,7 @@ public class HelloWorld {
     // Parses command-line arguments.
     String awsCredentials = args[0];
     String awsSecret = args[1];
-    String inputPrefixes = "common-crawl/crawl-002/" + args[2];
+    String inputPrefixes = "common-crawl/crawl-data/" + args[2];
     String outputFile = args[3];
 
     // Echoes back command-line arguments.
